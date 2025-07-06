@@ -1,0 +1,53 @@
+<%- include('partials/header') %>
+
+<h2>💬 Let's Chat (Live)</h2>
+
+<div class="chat-box" id="chatBox"></div>
+
+<form id="chatForm">
+  <input type="text" id="nameInput" placeholder="Your name" required>
+  <input type="text" id="messageInput" placeholder="Type your message..." required>
+  <button type="submit">Send</button>
+</form>
+
+<!-- Load socket.io script -->
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+
+  const chatBox = document.getElementById('chatBox');
+  const chatForm = document.getElementById('chatForm');
+  const nameInput = document.getElementById('nameInput');
+  const messageInput = document.getElementById('messageInput');
+
+  // Show one message in chat box
+  function addMessage(data) {
+    const p = document.createElement('p');
+    p.innerHTML = `<strong>${data.name}:</strong> ${data.message} <em>(${data.time})</em>`;
+    chatBox.appendChild(p);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  // When existing messages are loaded
+  socket.on('load messages', (msgs) => {
+    msgs.forEach(msg => addMessage(msg));
+  });
+
+  // When a new message is received
+  socket.on('chat message', (data) => {
+    addMessage(data);
+  });
+
+  // When you submit the form
+  chatForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = nameInput.value.trim();
+    const message = messageInput.value.trim();
+    if (name && message) {
+      socket.emit('chat message', { name, message });
+      messageInput.value = '';
+    }
+  });
+</script>
+
+<%- include('partials/footer') %>
