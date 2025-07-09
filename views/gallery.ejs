@@ -1,10 +1,12 @@
 <%- include('partials/header') %>
 
-<h2>📸 Our Memories</h2>
-<div class="gallery">
-  <% images.forEach(img => { %>
-    <img src="/images/<%= img %>" alt="Memory">
-  <% }) %>
+<div class="container">
+  <h2>📸 Our Memories</h2>
+  <div class="gallery">
+    <% images.forEach(img => { %>
+      <img src="/images/<%= img %>" alt="Memory">
+    <% }) %>
+  </div>
 </div>
 
 <%- include('partials/footer') %>

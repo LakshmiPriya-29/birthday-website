@@ -1,82 +1,191 @@
+/* 🌸 General Styles */
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #fff0f5;
-    color: #333;
-    padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff0f5;
+  color: #333;
+  padding: 20px;
+  margin: 0;
+}
+
+/* 💖 Navigation Bar */
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 15px;
+  background-color: #ffe6f0;
+  margin-bottom: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #e91e63;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+nav a:hover {
+  background-color: #ffd6e6;
+}
+
+/* 📝 Headings */
+h2 {
+  color: #d81b60;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 📄 Letter Page */
+.letter {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  line-height: 1.7;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: auto;
+  text-align: left;
+}
+
+/* 🖼️ Gallery */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.gallery img {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* 💬 Chat Container */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.chat-box {
+  height: 400px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #fffafc;
+  margin-bottom: 15px;
+}
+
+.message {
+  margin-bottom: 12px;
+  text-align: left;
+  background-color: #fce4ec;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* 💬 Chat Form */
+.chat-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chat-form input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.chat-form button {
+  padding: 10px 16px;
+  background-color: #ec407a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.chat-form button:hover {
+  background-color: #d81b60;
+}
+
+/* ✨ Inputs outside chat form (general) */
+input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* 📎 Footer */
+footer {
+  margin-top: 30px;
+  font-size: 0.9em;
+  text-align: center;
+  color: #999;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 1024px) {
+  .letter, .container {
+    width: 90%;
   }
-  
-  nav {
-    margin-bottom: 20px;
-  }
-  
-  nav a {
-    margin-right: 20px;
-    text-decoration: none;
-    color: #e91e63;
-    font-weight: bold;
-  }
-  
-  h2 {
-    color: #d81b60;
-  }
-  
-  .letter {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    line-height: 1.7;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    max-width: 600px;
-  }
-  
-  .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-  
+
   .gallery img {
-    width: 200px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    width: 45%;
   }
-  
-  .chat-box {
-    border: 1px solid #ddd;
-    padding: 10px;
-    max-height: 300px;
-    overflow-y: scroll;
-    margin-bottom: 10px;
-    background: #fff;
-    border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  input[type="text"] {
-    padding: 8px;
-    width: 200px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-  
-  button {
-    padding: 8px 16px;
-    background-color: #ec407a;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #d81b60;
-  }
-  
-  footer {
-    margin-top: 30px;
-    font-size: 0.9em;
+
+  nav a {
+    width: 90%;
     text-align: center;
-    color: #999;
   }
-  
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gallery img {
+    width: 90%;
+  }
+
+  .chat-box {
+    height: 300px;
+  }
+
+  .chat-form {
+    flex-direction: column;
+  }
+
+  .chat-form input,
+  .chat-form button {
+    width: 100%;
+  }
+
+  .letter {
+    font-size: 1rem;
+  }
+}

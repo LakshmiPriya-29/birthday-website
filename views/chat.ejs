@@ -1,14 +1,16 @@
 <%- include('partials/header') %>
 
-<h2>💬 Let's Chat (Live)</h2>
+<div class="container">
+  <h2>💬 Let's Chat (Live)</h2>
 
-<div class="chat-box" id="chatBox"></div>
+  <div class="chat-box" id="chatBox"></div>
 
-<form id="chatForm">
-  <input type="text" id="nameInput" placeholder="Your name" required>
-  <input type="text" id="messageInput" placeholder="Type your message..." required>
-  <button type="submit">Send</button>
-</form>
+  <form id="chatForm" class="chat-form">
+    <input type="text" id="nameInput" placeholder="Your name" required>
+    <input type="text" id="messageInput" placeholder="Type your message..." required>
+    <button type="submit">Send</button>
+  </form>
+</div>
 
 <!-- Load socket.io script -->
 <script src="/socket.io/socket.io.js"></script>
@@ -23,6 +25,7 @@
   // Show one message in chat box
   function addMessage(data) {
     const p = document.createElement('p');
+    p.classList.add("message");
     p.innerHTML = `<strong>${data.name}:</strong> ${data.message} <em>(${data.time})</em>`;
     chatBox.appendChild(p);
     chatBox.scrollTop = chatBox.scrollHeight;
