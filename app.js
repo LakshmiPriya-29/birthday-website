@@ -49,6 +49,10 @@ app.get('/chat', (req, res) => {
   res.render('chat'); // socket.io handles messages
 });
 
+app.get('/cake', (req, res) => {
+  res.render('cake');
+});
+
 // 🏠 Home page
 app.get('/', (req, res) => {
   res.redirect('/letter');

@@ -1,0 +1,71 @@
+<%- include('partials/header') %>
+
+<style>
+  .cake-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .cake {
+    width: 150px;
+    height: 100px;
+    background: pink;
+    margin: 0 auto;
+    border-radius: 10px;
+    position: relative;
+  }
+
+  .candle {
+    width: 10px;
+    height: 40px;
+    background: #fff;
+    position: absolute;
+    top: -40px;
+    left: calc(50% - 5px);
+    border-radius: 2px;
+  }
+
+  .flame {
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, yellow 40%, orange 60%, red 80%);
+    border-radius: 50%;
+    position: absolute;
+    top: -20px;
+    left: -5px;
+    animation: flicker 0.2s infinite alternate;
+  }
+
+  @keyframes flicker {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(1.2); opacity: 0.8; }
+  }
+
+  .message {
+    margin-top: 20px;
+    font-size: 1.4rem;
+    display: none;
+    color: #cc0066;
+  }
+
+  .cake:hover .flame {
+    display: none;
+  }
+
+  .cake:hover ~ .message {
+    display: block;
+  }
+
+</style>
+
+<div class="cake-container">
+  <h2>🎂 Blow the candle!</h2>
+  <div class="cake">
+    <div class="candle">
+      <div class="flame"></div>
+    </div>
+  </div>
+  <div class="message">🥳 Yay! You blew the candle! Wishing you a magical birthday! 💖</div>
+</div>
+
+<%- include('partials/footer') %>
