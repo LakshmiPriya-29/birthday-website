@@ -67,7 +67,8 @@ io.on('connection', (socket) => {
     const msg = {
       name: data.name,
       message: data.message,
-      time: new Date().toLocaleTimeString()
+      time: new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' })
+
     };
     messages.push(msg);
 
