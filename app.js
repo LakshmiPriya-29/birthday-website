@@ -11,7 +11,7 @@ const server = http.createServer(app);   // 🔁 instead of app.listen
 const io = new Server(server);           // 🎯 create socket.io server
 
 // Set the port number
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
 // Middleware to handle form data
 app.use(bodyParser.urlencoded({ extended: true }));
