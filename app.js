@@ -55,7 +55,7 @@ app.get('/cake', (req, res) => {
 
 // 🏠 Home page
 app.get('/', (req, res) => {
-  res.redirect('/letter');
+  res.redirect('welcome');
 });
 
 
