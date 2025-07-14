@@ -92,7 +92,7 @@
 
   function openLightbox(index) {
     currentIndex = index;
-    document.getElementById('lightboxImage').src = "/images/" + images[index];
+    updateLightboxImage();
     document.getElementById('lightbox').style.display = 'flex';
   }
 
@@ -102,13 +102,52 @@
 
   function nextImage() {
     currentIndex = (currentIndex + 1) % images.length;
-    document.getElementById('lightboxImage').src = "/images/" + images[currentIndex];
+    updateLightboxImage();
   }
 
   function prevImage() {
     currentIndex = (currentIndex - 1 + images.length) % images.length;
-    document.getElementById('lightboxImage').src = "/images/" + images[currentIndex];
+    updateLightboxImage();
+  }
+
+  function updateLightboxImage() {
+    const img = document.getElementById('lightboxImage');
+    img.style.opacity = 0;
+    setTimeout(() => {
+      img.src = "/images/" + images[currentIndex];
+      img.style.opacity = 1;
+    }, 150);
+  }
+
+  // 📱 Swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  const lightbox = document.getElementById('lightbox');
+
+  lightbox.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].clientX;
+  });
+
+  lightbox.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].clientX;
+    handleGesture();
+  });
+
+  function handleGesture() {
+    const threshold = 50;
+    const swipeDistance = touchEndX - touchStartX;
+
+    if (swipeDistance > threshold) {
+      // Swipe right
+      prevImage();
+    } else if (swipeDistance < -threshold) {
+      // Swipe left
+      nextImage();
+    }
   }
 </script>
+
+
 
 <%- include('partials/footer') %>
