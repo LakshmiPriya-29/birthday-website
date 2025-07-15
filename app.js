@@ -30,8 +30,15 @@ let messages = [];
 
 // 📝 Letter Page
 app.get('/letter', (req, res) => {
-  res.render('letter');
+  const fs = require('fs');
+  fs.readdir('./public/images_1', (err, files) => {
+    if (err) {
+      return res.render('letter', { handwrittenImages: [] });
+    }
+    res.render('letter', { handwrittenImages: files });
+  });
 });
+
 
 // 🖼️ Gallery Page
 app.get('/gallery', (req, res) => {
