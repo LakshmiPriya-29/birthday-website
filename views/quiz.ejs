@@ -1,0 +1,101 @@
+<%- include('partials/header') %>
+
+<style>
+  .quiz-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: #fff0f5;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #ffb6c1;
+    text-align: center;
+  }
+
+  .question {
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    color: #cc3366;
+  }
+
+  .options button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    background: #ff69b4;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .result {
+    font-size: 1.2rem;
+    color: #ff1493;
+    margin-top: 20px;
+  }
+</style>
+
+<div class="quiz-container">
+  <div id="quizBox">
+    <div class="question" id="questionText">Loading...</div>
+    <div class="options" id="optionsContainer"></div>
+  </div>
+  <div class="result" id="resultBox" style="display:none;"></div>
+</div>
+
+<script>
+  const questions = [
+    {
+      question: "What was our first movie together?",
+      options: ["naaney varuven", "Vikram", "83", "seetha raamam"],
+      answer: "83"
+    },
+    {
+      question: "Who said 'I love you' first?",
+      options: ["Priya", "Sarvesh", "Both at same time"],
+      answer: "Priya"
+    },
+    {
+      question: "What’s my favorite dessert",
+      options: ["Waffle", "Sizzling Brownie", "chocolate icecream"],
+      answer: "Sizzling Brownie"
+    },
+    {
+      question: "Where do I want our next trip to be?",
+      options: ["Goa(Beach)", "Pondy", "Hill station", "Paris"],
+      answer: "Hill station"
+    }
+  ];
+
+  let currentQuestion = 0;
+  let score = 0;
+
+  function showQuestion() {
+    const q = questions[currentQuestion];
+    document.getElementById("questionText").innerText = q.question;
+    const optionsHTML = q.options.map(option =>
+      `<button onclick="checkAnswer('${option}')">${option}</button>`
+    ).join('');
+    document.getElementById("optionsContainer").innerHTML = optionsHTML;
+  }
+
+  function checkAnswer(selected) {
+    const correct = questions[currentQuestion].answer;
+    if (selected === correct) score++;
+
+    currentQuestion++;
+    if (currentQuestion < questions.length) {
+      showQuestion();
+    } else {
+      document.getElementById("quizBox").style.display = "none";
+      document.getElementById("resultBox").style.display = "block";
+      document.getElementById("resultBox").innerText = `You got ${score} out of ${questions.length} correct ❤️...adhunalaaaa namba made for each other uhhh 🙈`;}
+  }
+
+  // Load first question
+  showQuestion();
+</script>
+
+<%- include('partials/footer') %>

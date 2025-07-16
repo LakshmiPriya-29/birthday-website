@@ -31,13 +31,28 @@ let messages = [];
 // 📝 Letter Page
 app.get('/letter', (req, res) => {
   const fs = require('fs');
-  fs.readdir('./public/images_1', (err, files) => {
+  const folderPath = path.join(__dirname, 'public/images_1');
+
+  fs.readdir(folderPath, (err, files) => {
     if (err) {
-      return res.render('letter', { handwrittenImages: [] });
+      return res.send('Error loading handwritten letters');
     }
-    res.render('letter', { handwrittenImages: files });
+
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+    const videoExtensions = ['.mp4', '.webm', '.ogg'];
+
+    const handwrittenImages = files.filter(file =>
+      imageExtensions.includes(path.extname(file).toLowerCase())
+    );
+
+    const videos = files.filter(file =>
+      videoExtensions.includes(path.extname(file).toLowerCase())
+    );
+
+    res.render('letter', { handwrittenImages, videos });
   });
 });
+
 
 
 // 🖼️ Gallery Page
@@ -59,11 +74,19 @@ app.get('/chat', (req, res) => {
 app.get('/cake', (req, res) => {
   res.render('cake');
 });
+app.get('/touchme', (req, res) => {
+  res.render('touchme');
+});
+
 
 // 🏠 Home page
 app.get('/', (req, res) => {
   res.render('welcome');
 });
+app.get('/quiz', (req, res) => {
+  res.render('quiz');
+});
+
 
 
 // 🔌 SOCKET.IO SETUP
